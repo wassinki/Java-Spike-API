@@ -4,52 +4,46 @@ import java.io.IOException;
 
 public class Motor {
 
-	private String motor;
+	private MotorEnum motorEnum;
+	private SpikeCommandExecutor spikeCommandExecutor;
 
-	public Motor(String motorChar) {
-		this.motor = motorChar;
-	}
-
-	public void createMotor(String letter) {
-		try {
-			MindstormsHub.writeString("motor = Motor('" + letter + "')");
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+	public Motor(MotorEnum motorEnum, SpikeCommandExecutor executor) {
+		this.spikeCommandExecutor = executor;
+		this.motorEnum = motorEnum;
 	}
 
 	/** ACTIONS */
-	public void run_for_seconds(int time) {
+	public void runForSeconds(int time) {
 		try {
-			MindstormsHub.writeString("motor.run_for_seconds(" + time + ")");
+			spikeCommandExecutor.execute(String.format("motor%s.run_for_seconds(" + time + ")", motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public void run_for_degrees(int degrees) {
+	public void runForDegrees(int degrees) {
 		try {
-			MindstormsHub.writeString("motor.run_for_degrees(" + degrees + ")");
+			spikeCommandExecutor.execute(String.format("motor%s.run_for_degrees(" + degrees + ")", motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public void run_to_position(int position) throws IOException {
-		MindstormsHub.writeString("motor.run_to_position(" + position + ")");
+	public void runToPosition(int position) throws IOException {
+		spikeCommandExecutor.execute(String.format("motor%s.run_to_position(" + position + ")", motorEnum.asString));
 	}
 
-	public void run_to_degrees_counted(int degrees) {
+	public void runToDegreesCounted(int degrees) {
 		try {
-			MindstormsHub.writeString("motor.run_to_degrees_counted(" + degrees + ")");
+			spikeCommandExecutor.execute(String.format("motor%s.run_to_degrees_counted(" + degrees + ")", motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public void run_for_rotations(float rotations) {
+	public void runForRotations(float rotations) {
 		try {
-			MindstormsHub.writeString("motor.run_for_rotations(" + rotations + ")");
+			spikeCommandExecutor.execute(String.format("motor%s.run_for_rotations(" + rotations + ")", motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -57,7 +51,7 @@ public class Motor {
 
 	public void start(int speed) {
 		try {
-			MindstormsHub.writeString("motor.start(" + speed + ")");
+			spikeCommandExecutor.execute(String.format("motor%s.start(" + speed + ")", motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -65,7 +59,7 @@ public class Motor {
 
 	public void start() {
 		try {
-			MindstormsHub.writeString("motor.start()");
+			spikeCommandExecutor.execute(String.format("motor%s.start()", motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -73,16 +67,16 @@ public class Motor {
 
 	public void stop() {
 		try {
-			MindstormsHub.writeString("motor.stop()");
+			spikeCommandExecutor.execute(String.format("motor%s.stop()", motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 
 	}
 
-	public void start_at_power(int power) {
+	public void startAtPower(int power) {
 		try {
-			MindstormsHub.writeString("motor.start_at_power(" + power + ")");
+			spikeCommandExecutor.execute(String.format("motor%s.start_at_power(" + power + ")", motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -92,36 +86,36 @@ public class Motor {
 	/**
 	 * GETTERS / MEASUREMENTS
 	 */
-	public int get_speed() {
+	public int getSpeed() {
 		try {
-			MindstormsHub.writeString("motor.get_speed()");
+			spikeCommandExecutor.execute(String.format("motor%s.get_speed()", motorEnum.asString));
 			return 0;
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public int get_position() {
+	public int getPosition() {
 		try {
-			MindstormsHub.writeString("motor.get_position()");
+			spikeCommandExecutor.execute(String.format("motor%s.get_position()", motorEnum.asString));
 			return 0;
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public int get_degrees_counted() {
+	public int getDegreesCounted() {
 		try {
-			MindstormsHub.writeString("motor.get_degrees_counted()");
+			spikeCommandExecutor.execute(String.format("motor%s.get_degrees_counted()", motorEnum.asString));
 			return 0;
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public int get_default_speed() {
+	public int getDefaultSpeed() {
 		try {
-			MindstormsHub.writeString("motor.get_default_speed()");
+			spikeCommandExecutor.execute(String.format("motor%s.get_default_speed()", motorEnum.asString));
 			return 0;
 		} catch (IOException e) {
 			throw new RuntimeException(e);
@@ -131,18 +125,18 @@ public class Motor {
 	/**
 	 * EVENTS
 	 */
-	public boolean was_interupted() {
+	public boolean wasInterupted() {
 		try {
-			MindstormsHub.writeString("motor.was_interrupted()");
+			spikeCommandExecutor.execute(String.format("motor%s.was_interrupted()", motorEnum.asString));
 			return false;
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public boolean was_stalled() {
+	public boolean wasStalled() {
 		try {
-			MindstormsHub.writeString("motor.was_stalled()");
+			spikeCommandExecutor.execute(String.format("motor%s.was_stalled()", motorEnum.asString));
 			return false;
 		} catch (IOException e) {
 			throw new RuntimeException(e);
@@ -152,37 +146,37 @@ public class Motor {
 	/**
 	 * Settings
 	 */
-	public void set_degrees_counted(int degrees_counted) {
+	public void setDegreesCounted(int degrees_counted) {
 		try {
-			MindstormsHub.writeString("motor.set_degrees_counted(" + degrees_counted + ")");
+			spikeCommandExecutor.execute(String.format("motor%s.set_degrees_counted(" + degrees_counted + ")", motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public void set_default_speed(int default_speed) {
+	public void setDefaultSpeed(int default_speed) {
 		try {
-			MindstormsHub.writeString("motor.set_default_speed(" + default_speed + ")");
+			spikeCommandExecutor.execute(String.format("motor%s.set_default_speed(" + default_speed + ")", motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public void set_stop_action(int stop_action) {
+	public void setStopAction(int stop_action) {
 		try {
-			MindstormsHub.writeString("motor.set_stop_action(" + stop_action + ")");
+			spikeCommandExecutor.execute(String.format("motor%s.set_stop_action(" + stop_action + ")", motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public void set_default_speed(boolean stall_detection) {
+	public void setDefaultSpeed(boolean stall_detection) {
 		try {
 			if (stall_detection) {
-				MindstormsHub.writeString("motor.set_stall_detection(True)");
+				spikeCommandExecutor.execute(String.format("motor%s.set_stall_detection(True)", motorEnum.asString));
 			}
 			else {
-				MindstormsHub.writeString("motor.set_stall_detection(False)");
+				spikeCommandExecutor.execute("motor.set_stall_detection(False)");
 			}
 		} catch (IOException e) {
 			throw new RuntimeException(e);

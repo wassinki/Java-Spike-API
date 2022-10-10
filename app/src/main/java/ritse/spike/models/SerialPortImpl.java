@@ -58,17 +58,17 @@ public class SerialPortImpl implements LegoSerialPort {
 	}
 
 	@Override
-	public Optional<InputStream> getInputStream() throws IOException {
+	public Optional<InputStream> getInputStream() {
 		return Optional.of(serialPort.getInputStream());
 	}
 
 	@Override
-	public Optional<OutputStream> getOutputStream() throws IOException {
+	public Optional<OutputStream> getOutputStream() {
 		return Optional.of(serialPort.getOutputStream());
 	}
 
 	@Override
-	public void close() throws IOException {
+	public void close() {
 		serialPort.closePort();
 	}
 
