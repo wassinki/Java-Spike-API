@@ -15,6 +15,8 @@ public class ColorSensor {
 			spikeCommandExecutor.execute("color_sensor.light_up_all(" + brightness + ")");
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -22,6 +24,8 @@ public class ColorSensor {
 		try {
 			spikeCommandExecutor.execute(String.format("color_sensor.light_up(%d, %d, %d)", brightness_light_1, brightness_light_2, brightness_light_3));
 		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -32,6 +36,8 @@ public class ColorSensor {
 			spikeCommandExecutor.execute(String.format("color_sensor.wait_until_color('%s')", color));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -39,6 +45,8 @@ public class ColorSensor {
 		try {
 			spikeCommandExecutor.execute(String.format("color_sensor.wait_for_new_color('%s')", color));
 		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -50,6 +58,8 @@ public class ColorSensor {
 			return null;
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -59,6 +69,8 @@ public class ColorSensor {
 			return 0;
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -67,6 +79,8 @@ public class ColorSensor {
 			spikeCommandExecutor.execute("color_sensor.get_reflected_light()");
 			return 0;
 		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
 	}

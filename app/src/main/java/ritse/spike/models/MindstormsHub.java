@@ -20,16 +20,18 @@ public class MindstormsHub {
 		buttonMap = new HashMap<>();
 	}
 
-	public void initialize() {
+	public void initialize() throws InterruptedException {
 		try {
+			System.out.println("initializing");
 			spikeCommandExecutor.execute("\003");
-			spikeCommandExecutor.execute("print(\"Hello Hub\")");
 			spikeCommandExecutor.execute("from spike import PrimeHub, LightMatrix, Button, StatusLight, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor");
 			spikeCommandExecutor.execute("import hub");
-			spikeCommandExecutor.execute("hub.status_light.on('blue')\n");
+			spikeCommandExecutor.execute("hub = PrimeHub()");
 			buttonMap.put(ButtonEnum.LEFT, new Button(ButtonEnum.LEFT, spikeCommandExecutor));
 			buttonMap.put(ButtonEnum.RIGHT, new Button(ButtonEnum.RIGHT, spikeCommandExecutor));
 			buttonMap.put(ButtonEnum.CENTER, new Button(ButtonEnum.CENTER, spikeCommandExecutor));
+//			initializeMethodTest();
+			initializeEvalFunction();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -40,10 +42,12 @@ public class MindstormsHub {
 			spikeCommandExecutor.execute(String.format("hub.display.show(\"%s\")", text));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
-	public void createMotor(MotorEnum motorEnum) throws IOException {
+	public void createMotor(MotorEnum motorEnum) throws IOException, InterruptedException {
 		System.out.println("Creating motor");
 		spikeCommandExecutor.execute(String.format("motor%s = Motor('" + motorEnum.asString + "')", motorEnum.asString));
 		handleAddMotor(motorEnum);
@@ -53,28 +57,29 @@ public class MindstormsHub {
 		return motorMap.get(motorEnum);
 	}
 
-	public void createDistanceSensor(String portChar) throws IOException {
+	public void createDistanceSensor(String portChar) throws IOException, InterruptedException {
 		distanceSensor = new DistanceSensor(spikeCommandExecutor);
 		spikeCommandExecutor.execute(String.format("distance_sensor = DistanceSensor('%s')", portChar));
 	}
 
-	public DistanceSensor getDistanceSensor () {
+	public DistanceSensor getDistanceSensor() {
 		return distanceSensor;
 	}
 
-	public void createColorSensor(String portChar) throws IOException {
+	public void createColorSensor(String portChar) throws IOException, InterruptedException {
 		colorSensor = new ColorSensor(spikeCommandExecutor);
 		spikeCommandExecutor.execute(String.format("distance_sensor = DistanceSensor('%s')", portChar));
 	}
 
-	public ColorSensor getColorSensor () {
+	public ColorSensor getColorSensor() {
 		return colorSensor;
 	}
 
 
-	public Button getButtonByEnum (ButtonEnum buttonEnum) {
+	public Button getButtonByEnum(ButtonEnum buttonEnum) {
 		return buttonMap.get(buttonEnum);
 	}
+
 	private void handleAddMotor(MotorEnum motorEnum) {
 		switch (motorEnum) {
 			case A:
@@ -98,8 +103,16 @@ public class MindstormsHub {
 		}
 	}
 
-	private void initializeEvalFunction(){
+	private void initializeEvalFunction() throws IOException, InterruptedException {
+		spikeCommandExecutor.execute("def evaluator(msgType, counter, fn):\n " +
+				"return \"{}:{}:{}%\".format(msgType, counter, eval(fn))\r\n");
+	}
 
+	public void testMethod() throws IOException, InterruptedException {
+		spikeCommandExecutor.execute("motorA = Motor('A')\n");
+		spikeCommandExecutor.execute("evaluator(\"RC\", 62, \"motorA.get_position()\n\")\r\n");
+		String result = spikeCommandExecutor.getResult();
+		System.out.println("This is the result :" + result);
 	}
 }
 

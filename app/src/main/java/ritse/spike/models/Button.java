@@ -16,7 +16,7 @@ public class Button {
 		try {
 			spikeCommandExecutor.execute(String.format("hub.{}_button_is_pressed()", buttonEnum.asString));
 			return false;
-		} catch (IOException e) {
+		} catch (IOException | InterruptedException e) {
 			throw new RuntimeException(e);
 		}
 	}

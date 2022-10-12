@@ -20,6 +20,7 @@ import java.util.function.Consumer;
 import com.fazecast.jSerialComm.SerialPort;
 import com.fazecast.jSerialComm.SerialPortDataListener;
 import com.fazecast.jSerialComm.SerialPortEvent;
+import com.fazecast.jSerialComm.SerialPortMessageListener;
 
 public class SerialPortImpl implements LegoSerialPort {
 
@@ -29,7 +30,17 @@ public class SerialPortImpl implements LegoSerialPort {
 		serialPort = SerialPort.getCommPort(port);
 		serialPort.setBaudRate(baudrate);
 
-		serialPort.addDataListener(new SerialPortDataListener() {
+		serialPort.addDataListener(new SerialPortMessageListener() {
+			@Override
+			public byte[] getMessageDelimiter() {
+				return "%".getBytes();
+			}
+
+			@Override
+			public boolean delimiterIndicatesEndOfMessage() {
+				return true;
+			}
+
 			@Override
 			public int getListeningEvents() {
 				return SerialPort.LISTENING_EVENT_DATA_RECEIVED;

@@ -3,12 +3,25 @@
  */
 package ritse.spike;
 
+import java.io.IOException;
+
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import ritse.spike.models.Result;
 
 public class AppTest {
     @Test public void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull("app should have a greeting", classUnderTest.getGreeting());
+        ObjectMapper mapper = new ObjectMapper();
+        String jsonString = "{\"type\":\"RC\", \"counter\":\"21\", \"evaluateResult\":\"143\" }";
+        try {
+            Result json = mapper.readValue(jsonString, Result.class);
+            System.out.println("TEST");
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

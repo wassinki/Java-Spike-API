@@ -15,12 +15,18 @@ public class DistanceSensor {
 			spikeCommandExecutor.execute(String.format("distance_sensor.light_up_all(%d)", brightness));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
 	public void lightUpAll() {
 		try {
-			spikeCommandExecutor.execute(String.format("distance_sensor.light_up_all()"));
+			try {
+				spikeCommandExecutor.execute(String.format("distance_sensor.light_up_all()"));
+			} catch (InterruptedException e) {
+				throw new RuntimeException(e);
+			}
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -31,6 +37,8 @@ public class DistanceSensor {
 			spikeCommandExecutor.execute(String.format("distance_sensor.light_up(%d, %d, %d, %d)", right_top, right_bottom, left_bottom, left_top));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -40,12 +48,16 @@ public class DistanceSensor {
 			spikeCommandExecutor.execute(String.format("distance_sensor.get_distance_cm()"));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
 		}
 	}
 	public void getDistanceInches() {
 		try {
 			spikeCommandExecutor.execute(String.format("distance_sensor.get_distance_inches()"));
 		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -54,6 +66,8 @@ public class DistanceSensor {
 		try {
 			spikeCommandExecutor.execute(String.format("distance_sensor.get_distance_percentage()"));
 		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -64,6 +78,8 @@ public class DistanceSensor {
 			spikeCommandExecutor.execute(String.format("distance_sensor.wait_for_distance_farther_than(%d, '%s')", distance, unit));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -71,6 +87,8 @@ public class DistanceSensor {
 		try {
 			spikeCommandExecutor.execute(String.format("distance_sensor.wait_for_distance_closer_than(%d, '%s')", distance, unit));
 		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
 	}

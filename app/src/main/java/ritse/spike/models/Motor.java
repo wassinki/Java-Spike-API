@@ -18,6 +18,8 @@ public class Motor {
 			spikeCommandExecutor.execute(String.format("motor%s.run_for_seconds(" + time + ")", motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -26,10 +28,12 @@ public class Motor {
 			spikeCommandExecutor.execute(String.format("motor%s.run_for_degrees(" + degrees + ")", motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
-	public void runToPosition(int position) throws IOException {
+	public void runToPosition(int position) throws IOException, InterruptedException {
 		spikeCommandExecutor.execute(String.format("motor%s.run_to_position(" + position + ")", motorEnum.asString));
 	}
 
@@ -37,6 +41,8 @@ public class Motor {
 		try {
 			spikeCommandExecutor.execute(String.format("motor%s.run_to_degrees_counted(" + degrees + ")", motorEnum.asString));
 		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -46,6 +52,8 @@ public class Motor {
 			spikeCommandExecutor.execute(String.format("motor%s.run_for_rotations(" + rotations + ")", motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -53,6 +61,8 @@ public class Motor {
 		try {
 			spikeCommandExecutor.execute(String.format("motor%s.start(" + speed + ")", motorEnum.asString));
 		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -62,6 +72,8 @@ public class Motor {
 			spikeCommandExecutor.execute(String.format("motor%s.start()", motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -69,6 +81,8 @@ public class Motor {
 		try {
 			spikeCommandExecutor.execute(String.format("motor%s.stop()", motorEnum.asString));
 		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
 
@@ -78,6 +92,8 @@ public class Motor {
 		try {
 			spikeCommandExecutor.execute(String.format("motor%s.start_at_power(" + power + ")", motorEnum.asString));
 		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -92,6 +108,8 @@ public class Motor {
 			return 0;
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -100,6 +118,8 @@ public class Motor {
 			spikeCommandExecutor.execute(String.format("motor%s.get_position()", motorEnum.asString));
 			return 0;
 		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -110,6 +130,8 @@ public class Motor {
 			return 0;
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -118,6 +140,8 @@ public class Motor {
 			spikeCommandExecutor.execute(String.format("motor%s.get_default_speed()", motorEnum.asString));
 			return 0;
 		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -131,6 +155,8 @@ public class Motor {
 			return false;
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -138,7 +164,7 @@ public class Motor {
 		try {
 			spikeCommandExecutor.execute(String.format("motor%s.was_stalled()", motorEnum.asString));
 			return false;
-		} catch (IOException e) {
+		} catch (IOException | InterruptedException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -151,6 +177,8 @@ public class Motor {
 			spikeCommandExecutor.execute(String.format("motor%s.set_degrees_counted(" + degrees_counted + ")", motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -159,6 +187,8 @@ public class Motor {
 			spikeCommandExecutor.execute(String.format("motor%s.set_default_speed(" + default_speed + ")", motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -166,6 +196,8 @@ public class Motor {
 		try {
 			spikeCommandExecutor.execute(String.format("motor%s.set_stop_action(" + stop_action + ")", motorEnum.asString));
 		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -179,6 +211,8 @@ public class Motor {
 				spikeCommandExecutor.execute("motor.set_stall_detection(False)");
 			}
 		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
 	}
