@@ -15,7 +15,7 @@ public class Motor {
 	/** ACTIONS */
 	public void runForSeconds(int time) {
 		try {
-			spikeCommandExecutor.execute(String.format("motor%s.run_for_seconds(" + time + ")", motorEnum.asString));
+			spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"motor%s.run_for_seconds(" + time + ")\")","RC", spikeCommandExecutor.getMessageNumber(), motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
@@ -25,7 +25,7 @@ public class Motor {
 
 	public void runForDegrees(int degrees) {
 		try {
-			spikeCommandExecutor.execute(String.format("motor%s.run_for_degrees(" + degrees + ")", motorEnum.asString));
+			spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"motor%s.run_for_degrees(" + degrees + ")\")","RC", spikeCommandExecutor.getMessageNumber(), motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
@@ -34,12 +34,12 @@ public class Motor {
 	}
 
 	public void runToPosition(int position) throws IOException, InterruptedException {
-		spikeCommandExecutor.execute(String.format("motor%s.run_to_position(" + position + ")", motorEnum.asString));
+		spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"motor%s.run_to_position(" + position + ")\")","RC", spikeCommandExecutor.getMessageNumber(), motorEnum.asString));
 	}
 
 	public void runToDegreesCounted(int degrees) {
 		try {
-			spikeCommandExecutor.execute(String.format("motor%s.run_to_degrees_counted(" + degrees + ")", motorEnum.asString));
+			spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"motor%s.run_to_degrees_counted(" + degrees + ")\")","RC", spikeCommandExecutor.getMessageNumber(), motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
@@ -49,7 +49,7 @@ public class Motor {
 
 	public void runForRotations(float rotations) {
 		try {
-			spikeCommandExecutor.execute(String.format("motor%s.run_for_rotations(" + rotations + ")", motorEnum.asString));
+			spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"motor%s.run_for_rotations(" + rotations + ")\")","RC", spikeCommandExecutor.getMessageNumber(), motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
@@ -59,7 +59,7 @@ public class Motor {
 
 	public void start(int speed) {
 		try {
-			spikeCommandExecutor.execute(String.format("motor%s.start(" + speed + ")", motorEnum.asString));
+			spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"motor%s.start(" + speed + ")\")","RC", spikeCommandExecutor.getMessageNumber(), motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
@@ -69,7 +69,7 @@ public class Motor {
 
 	public void start() {
 		try {
-			spikeCommandExecutor.execute(String.format("motor%s.start()", motorEnum.asString));
+			spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"motor%s.start()\")", "RC", spikeCommandExecutor.getMessageNumber(), motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
@@ -79,7 +79,7 @@ public class Motor {
 
 	public void stop() {
 		try {
-			spikeCommandExecutor.execute(String.format("motor%s.stop()", motorEnum.asString));
+			spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"motor%s.stop()\")","RC", spikeCommandExecutor.getMessageNumber(), motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
@@ -90,7 +90,7 @@ public class Motor {
 
 	public void startAtPower(int power) {
 		try {
-			spikeCommandExecutor.execute(String.format("motor%s.start_at_power(" + power + ")", motorEnum.asString));
+			spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"motor%s.start_at_power(" + power + ")\")","RC", spikeCommandExecutor.getMessageNumber(), motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
@@ -104,7 +104,7 @@ public class Motor {
 	 */
 	public int getSpeed() {
 		try {
-			spikeCommandExecutor.execute(String.format("motor%s.get_speed()", motorEnum.asString));
+			spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"motor%s.get_speed()\")","RC", spikeCommandExecutor.getMessageNumber(), motorEnum.asString));
 			return 0;
 		} catch (IOException e) {
 			throw new RuntimeException(e);
@@ -115,7 +115,8 @@ public class Motor {
 
 	public int getPosition() {
 		try {
-			spikeCommandExecutor.execute(String.format("motor%s.get_position()", motorEnum.asString));
+			spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"motor%s.get_position()\")","RC", spikeCommandExecutor.getMessageNumber(), motorEnum.asString));
+			System.out.println(spikeCommandExecutor.getResult());
 			return 0;
 		} catch (IOException e) {
 			throw new RuntimeException(e);
@@ -126,7 +127,7 @@ public class Motor {
 
 	public int getDegreesCounted() {
 		try {
-			spikeCommandExecutor.execute(String.format("motor%s.get_degrees_counted()", motorEnum.asString));
+			spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"motor%s.get_degrees_counted()\")","RC", spikeCommandExecutor.getMessageNumber(), motorEnum.asString));
 			return 0;
 		} catch (IOException e) {
 			throw new RuntimeException(e);
@@ -137,7 +138,7 @@ public class Motor {
 
 	public int getDefaultSpeed() {
 		try {
-			spikeCommandExecutor.execute(String.format("motor%s.get_default_speed()", motorEnum.asString));
+			spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"motor%s.get_default_speed()\")","RC", spikeCommandExecutor.getMessageNumber(), motorEnum.asString));
 			return 0;
 		} catch (IOException e) {
 			throw new RuntimeException(e);
@@ -151,7 +152,7 @@ public class Motor {
 	 */
 	public boolean wasInterupted() {
 		try {
-			spikeCommandExecutor.execute(String.format("motor%s.was_interrupted()", motorEnum.asString));
+			spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"motor%s.was_interrupted()\")","RC", spikeCommandExecutor.getMessageNumber(), motorEnum.asString));
 			return false;
 		} catch (IOException e) {
 			throw new RuntimeException(e);
@@ -162,7 +163,7 @@ public class Motor {
 
 	public boolean wasStalled() {
 		try {
-			spikeCommandExecutor.execute(String.format("motor%s.was_stalled()", motorEnum.asString));
+			spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"motor%s.was_stalled()\")","RC", spikeCommandExecutor.getMessageNumber(), motorEnum.asString));
 			return false;
 		} catch (IOException | InterruptedException e) {
 			throw new RuntimeException(e);
@@ -174,7 +175,7 @@ public class Motor {
 	 */
 	public void setDegreesCounted(int degrees_counted) {
 		try {
-			spikeCommandExecutor.execute(String.format("motor%s.set_degrees_counted(" + degrees_counted + ")", motorEnum.asString));
+			spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"motor%s.set_degrees_counted(" + degrees_counted + ")\")","RC", spikeCommandExecutor.getMessageNumber(), motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
@@ -184,7 +185,7 @@ public class Motor {
 
 	public void setDefaultSpeed(int default_speed) {
 		try {
-			spikeCommandExecutor.execute(String.format("motor%s.set_default_speed(" + default_speed + ")", motorEnum.asString));
+			spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"motor%s.set_default_speed(" + default_speed + ")\")","RC", spikeCommandExecutor.getMessageNumber(), motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
@@ -194,7 +195,7 @@ public class Motor {
 
 	public void setStopAction(int stop_action) {
 		try {
-			spikeCommandExecutor.execute(String.format("motor%s.set_stop_action(" + stop_action + ")", motorEnum.asString));
+			spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"motor%s.set_stop_action(" + stop_action + ")\")","RC", spikeCommandExecutor.getMessageNumber(), motorEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
@@ -205,10 +206,10 @@ public class Motor {
 	public void setDefaultSpeed(boolean stall_detection) {
 		try {
 			if (stall_detection) {
-				spikeCommandExecutor.execute(String.format("motor%s.set_stall_detection(True)", motorEnum.asString));
+				spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"motor%s.set_stall_detection(True)\")","RC", spikeCommandExecutor.getMessageNumber(), motorEnum.asString));
 			}
 			else {
-				spikeCommandExecutor.execute("motor.set_stall_detection(False)");
+				spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"motor%s.set_stall_detection(False)\")","RC", spikeCommandExecutor.getMessageNumber(), motorEnum.asString));
 			}
 		} catch (IOException e) {
 			throw new RuntimeException(e);

@@ -11,12 +11,16 @@ public class SpikeCommandExecutor {
 	private final AtomicReference<String> result = new AtomicReference<>();
 	private CountDownLatch latch = new CountDownLatch(1);
 
+	private int messageNumber = 0;
+
 	public SpikeCommandExecutor(String comport) {
 		this.serialPort = new SerialPortImpl(comport, 115200, bytes -> {
-			System.out.println("Bytes received: " + new String(bytes) + " end of bytes received");
-			final String r = new String(bytes);
-			// if message id in r = x
-			result.set(r);
+			String message = new String(bytes);
+			String noExclaimationMark = message.substring(message.lastIndexOf("!") +1);
+			String answer = noExclaimationMark.substring(0, noExclaimationMark.length() -1);
+
+
+			result.set(answer);
 			latch.countDown();
 		});
 
@@ -37,12 +41,18 @@ public class SpikeCommandExecutor {
 		if (result.get() != null){
 			// doe je ding
 			System.out.println("Result: " + result.get());
+			messageNumber++;
 		} else {
 			System.out.println("RESULT IS NULL");
 		}
+
 	}
 
 	public String getResult() {
 		return result.get();
+	}
+
+	public int getMessageNumber() {
+		return messageNumber;
 	}
 }

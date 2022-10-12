@@ -10,14 +10,24 @@ public class App {
 		System.out.println("Starting");
 		MindstormsHub hub = new MindstormsHub("COM5");
 		hub.initialize();
+
+		hub.createColorSensor("C");
+		hub.getColorSensor().lightUpAll(100);
+		hub.getColorSensor().getReflectedLight();
+		hub.getColorSensor().getAmbientLight();
+
 //		hub.createMotor(MotorEnum.E);
-//		hub.getMotorByMotorEnum(MotorEnum.E).runForSeconds(2);
+////		hub.getMotorByMotorEnum(MotorEnum.E).setDefaultSpeed(5);
+//		hub.getMotorByMotorEnum(MotorEnum.E).getPosition();
+////		hub.getMotorByMotorEnum(MotorEnum.E).start();
+//		hub.getMotorByMotorEnum(MotorEnum.E).start();
+//		Thread.sleep(150);
+//		hub.getMotorByMotorEnum(MotorEnum.E).stop();
 //
 //
 //		hub.createMotor(MotorEnum.A);
 //		hub.getMotorByMotorEnum(MotorEnum.A).runForSeconds(2);
 
-		hub.testMethod();
 		System.out.println("done");
 	}
 }
