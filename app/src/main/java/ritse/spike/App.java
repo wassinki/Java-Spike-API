@@ -11,23 +11,21 @@ public class App {
 		MindstormsHub hub = new MindstormsHub("COM5");
 		hub.initialize();
 
-		hub.createColorSensor("C");
-		hub.getColorSensor().lightUpAll(100);
-		hub.getColorSensor().getReflectedLight();
-		hub.getColorSensor().getAmbientLight();
 
-//		hub.createMotor(MotorEnum.E);
-////		hub.getMotorByMotorEnum(MotorEnum.E).setDefaultSpeed(5);
-//		hub.getMotorByMotorEnum(MotorEnum.E).getPosition();
-////		hub.getMotorByMotorEnum(MotorEnum.E).start();
-//		hub.getMotorByMotorEnum(MotorEnum.E).start();
-//		Thread.sleep(150);
-//		hub.getMotorByMotorEnum(MotorEnum.E).stop();
-//
-//
-//		hub.createMotor(MotorEnum.A);
-//		hub.getMotorByMotorEnum(MotorEnum.A).runForSeconds(2);
+//		hub.createDistanceSensor("C");
+//		hub.getDistanceSensor().lightUpAll();
+//		hub.getDistanceSensor().getDistanceCm();
 
-		System.out.println("done");
+		hub.createMotor(MotorEnum.A);
+		hub.getMotorByMotorEnum(MotorEnum.A).getDefaultSpeed();
+		hub.getMotorByMotorEnum(MotorEnum.A).getPosition();
+		hub.getMotorByMotorEnum(MotorEnum.A).getSpeed();
+
+
+//		hub.createColorSensor("C");
+//		hub.getColorSensor().getColor();
+//		hub.getColorSensor().getReflectedLight();
+//		hub.getColorSensor().getAmbientLight();
+//		System.out.println("done");
 	}
 }
