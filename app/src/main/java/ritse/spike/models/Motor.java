@@ -87,8 +87,7 @@ public class Motor {
 	 */
 	public int getSpeed() {
 		try {
-			spikeCommandExecutor.execute(String.format("motor%s.get_speed()", motorEnum.asString));
-			return 0;
+			return Integer.parseInt(spikeCommandExecutor.execute(String.format("motor%s.get_speed()", motorEnum.asString)));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
@@ -98,8 +97,7 @@ public class Motor {
 
 	public int getPosition() {
 		try {
-			spikeCommandExecutor.execute(String.format("motor%s.get_position()", motorEnum.asString));
-			return 0;
+			return Integer.parseInt(spikeCommandExecutor.execute(String.format("motor%s.get_position()", motorEnum.asString)));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
@@ -109,8 +107,7 @@ public class Motor {
 
 	public int getDegreesCounted() {
 		try {
-			spikeCommandExecutor.execute(String.format("motor%s.get_degrees_counted()", motorEnum.asString));
-			return 0;
+			return Integer.parseInt(spikeCommandExecutor.execute(String.format("motor%s.get_degrees_counted()", motorEnum.asString)));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
@@ -120,8 +117,7 @@ public class Motor {
 
 	public int getDefaultSpeed() {
 		try {
-			spikeCommandExecutor.execute(String.format("motor%s.get_default_speed()", motorEnum.asString));
-			return 0;
+			return Integer.parseInt(spikeCommandExecutor.execute(String.format("motor%s.get_default_speed()", motorEnum.asString)));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		} catch (InterruptedException e) {
