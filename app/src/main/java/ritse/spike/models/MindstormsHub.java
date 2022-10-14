@@ -26,6 +26,7 @@ public class MindstormsHub {
 			spikeCommandExecutor.executeVoid("\003");
 			spikeCommandExecutor.executeVoid("from spike import PrimeHub, LightMatrix, Button, StatusLight, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor");
 			spikeCommandExecutor.executeVoid("import hub");
+			spikeCommandExecutor.executeVoid("hub = PrimeHub()");
 			buttonMap.put(ButtonEnum.LEFT, new Button(ButtonEnum.LEFT, spikeCommandExecutor));
 			buttonMap.put(ButtonEnum.RIGHT, new Button(ButtonEnum.RIGHT, spikeCommandExecutor));
 			buttonMap.put(ButtonEnum.CENTER, new Button(ButtonEnum.CENTER, spikeCommandExecutor));
@@ -37,10 +38,8 @@ public class MindstormsHub {
 
 	public void displayText(String text) {
 		try {
-			spikeCommandExecutor.execute(String.format("hub.display.show(\"%s\")", text));
+			spikeCommandExecutor.executeVoid(String.format("hub.display.show(\"%s\")", text));
 		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
 	}
@@ -104,6 +103,18 @@ public class MindstormsHub {
 		spikeCommandExecutor.executeVoid("def evaluator(msgType, counter, fn):\n " +
 				"return \"!{}:{}:{}%\".format(msgType, counter, eval(fn))\r\n");
 	}
+
+//	private void initializeButtonPressedFunction() throws IOException, InterruptedException {
+//		spikeCommandExecutor.executeVoid("def buttonPressed(msgType, counter, fn):\n " +
+//				"return \"!{}:{}:{}%\".format(msgType, counter, eval(fn))");
+////		spikeCommandExecutor.executeVoid("def buttonPressed(msgType, counter, fn):\n" +
+////				"    exit = True\n" +
+////				"    while exit:\n" +
+////				"        result = eval(fn)\n" +
+////				"        if result:\n" +
+////				"            exit = False\n" +
+////				"            return \"!{}:{}:{}%\".format(msgType, counter, \"984000001112578\")\r\n");
+//	}
 }
 
 

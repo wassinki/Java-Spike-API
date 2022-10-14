@@ -26,23 +26,21 @@ public class SpikeCommandExecutor {
 			// do patern matchin
 
 			String message = new String(bytes);
-			String noExclaimationMark = message.substring(message.lastIndexOf("!") +1);
-			String answer = noExclaimationMark.substring(0, noExclaimationMark.length() -1);
+			String noExclaimationMark = message.substring(message.lastIndexOf("!") + 1);
+			String answer = noExclaimationMark.substring(0, noExclaimationMark.length() - 1);
 			final Matcher matcher = RESULT_PATTERN.matcher(answer);
 			if (matcher.matches()) {
 
-					final int counter = Integer.parseInt(matcher.group(1));
-					final String res = matcher.group(2);
-					final Exchanger<String> exchanger = handlerMap.remove(counter);
+				final int counter = Integer.parseInt(matcher.group(1));
+				final String res = matcher.group(2);
+				final Exchanger<String> exchanger = handlerMap.remove(counter);
 
 				try {
 					exchanger.exchange(res);
 				} catch (InterruptedException e) {
 					throw new RuntimeException(e);
 				}
-				//messagebox.put(result);
 			}
-
 		});
 
 		try {
@@ -61,16 +59,14 @@ public class SpikeCommandExecutor {
 			// put in map
 			handlerMap.put(messageCounter, exchanger);
 
-			// mijn message id = x
 			serialPort.getOutputStream().get().write((String.format("evaluator(\"%s\", %d, \"" + command + "\")\r\n", "RC", messageCounter)).getBytes(StandardCharsets.UTF_8));
 			try {
-				result = exchanger.exchange("", 1, TimeUnit.SECONDS);
+				result = exchanger.exchange("", 15, TimeUnit.SECONDS);
 			} catch (TimeoutException e) {
-				throw new RuntimeException(e);
+				System.out.println(e.getCause() + " " + e.getMessage());
 			}
 
 			if (result != null) {
-				// doe je ding
 				System.out.println("Result: " + result);
 				final Matcher matcher = RESULT_PATTERN.matcher(result);
 			} else {
@@ -83,12 +79,8 @@ public class SpikeCommandExecutor {
 
 	}
 
-	public void executeVoid (String command) throws IOException {
+	public void executeVoid(String command) throws IOException {
 		serialPort.getOutputStream().get().write((command + "\r\n").getBytes(StandardCharsets.UTF_8));
-	}
-
-	public String getResult() {
-		return result;
 	}
 
 	public int getMessageNumber() {
