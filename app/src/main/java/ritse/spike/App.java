@@ -19,8 +19,8 @@ public class App {
 //		hub.getDistanceSensor().getDistanceCm();
 
 		/** To test motor */
-		hub.createMotor(MotorEnum.A);
-		hub.getMotorByMotorEnum(MotorEnum.A).getDefaultSpeed();
+//		hub.createMotor(MotorEnum.A);
+//		hub.getMotorByMotorEnum(MotorEnum.A).getDefaultSpeed();
 
 		hub.getButtonByEnum(ButtonEnum.LEFT).wasPressed();
 //		hub.getMotorByMotorEnum(MotorEnum.A).getPosition();

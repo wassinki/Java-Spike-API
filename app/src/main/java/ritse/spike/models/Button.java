@@ -4,25 +4,26 @@ import java.io.IOException;
 
 public class Button {
 
-	private String buttonEnum;
+	private ButtonEnum buttonEnum;
 	private SpikeCommandExecutor spikeCommandExecutor;
 
 	public Button(ButtonEnum buttonEnum, SpikeCommandExecutor executor) {
-		this.buttonEnum = buttonEnum.asString;
+		this.buttonEnum = buttonEnum;
 		this.spikeCommandExecutor = executor;
 	}
 
 	public boolean isPressed() {
 		try {
-			return Boolean.parseBoolean(spikeCommandExecutor.execute(String.format("hub.%s_button.is_pressed()", buttonEnum)).toLowerCase());
+			return Boolean.parseBoolean(spikeCommandExecutor.execute(String.format("hub.%s_button.is_pressed()", buttonEnum.asString)).toLowerCase());
 		} catch (IOException | InterruptedException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public boolean wasPressed() throws InterruptedException {
+	public void wasPressed() throws InterruptedException {
 		try {
-			return Boolean.parseBoolean(spikeCommandExecutor.execute(String.format("hub.%s_button.was_pressed()", buttonEnum)).toLowerCase());
+			spikeCommandExecutor.executeVoid(String.format("hub.button.%s.callback(lambda x: print(\"!{}:{}:{}%s\".format(\"CB\",900, 12342143)))", buttonEnum.asString, "%"));
+//			spikeCommandExecutor.executeVoid(String.format("hub.button.%s.callback(lambda x: hub.display.show(\"HET WERKT\"))", buttonEnum.asString));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}

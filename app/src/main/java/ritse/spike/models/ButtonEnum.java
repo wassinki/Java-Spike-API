@@ -11,4 +11,7 @@ public enum ButtonEnum {
 		this.asString = value;
 	}
 
+	public String getAsString() {
+		return asString;
+	}
 }

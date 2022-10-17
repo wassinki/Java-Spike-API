@@ -20,17 +20,19 @@ public class MindstormsHub {
 		buttonMap = new HashMap<>();
 	}
 
-	public void initialize() throws InterruptedException {
+	public void initialize() {
 		try {
 			System.out.println("initializing");
 			spikeCommandExecutor.executeVoid("\003");
 			spikeCommandExecutor.executeVoid("from spike import PrimeHub, LightMatrix, Button, StatusLight, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor");
 			spikeCommandExecutor.executeVoid("import hub");
-			spikeCommandExecutor.executeVoid("hub = PrimeHub()");
+			spikeCommandExecutor.executeVoid("primeHub = PrimeHub()");
+
 			buttonMap.put(ButtonEnum.LEFT, new Button(ButtonEnum.LEFT, spikeCommandExecutor));
 			buttonMap.put(ButtonEnum.RIGHT, new Button(ButtonEnum.RIGHT, spikeCommandExecutor));
 			buttonMap.put(ButtonEnum.CENTER, new Button(ButtonEnum.CENTER, spikeCommandExecutor));
 			initializeEvalFunction();
+//			initializeButtonPressedFunction();
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
@@ -99,21 +101,19 @@ public class MindstormsHub {
 		}
 	}
 
-	private void initializeEvalFunction() throws IOException, InterruptedException {
+	private void initializeEvalFunction() throws IOException {
 		spikeCommandExecutor.executeVoid("def evaluator(msgType, counter, fn):\n " +
 				"return \"!{}:{}:{}%\".format(msgType, counter, eval(fn))\r\n");
 	}
 
-//	private void initializeButtonPressedFunction() throws IOException, InterruptedException {
-//		spikeCommandExecutor.executeVoid("def buttonPressed(msgType, counter, fn):\n " +
-//				"return \"!{}:{}:{}%\".format(msgType, counter, eval(fn))");
-////		spikeCommandExecutor.executeVoid("def buttonPressed(msgType, counter, fn):\n" +
-////				"    exit = True\n" +
-////				"    while exit:\n" +
-////				"        result = eval(fn)\n" +
-////				"        if result:\n" +
-////				"            exit = False\n" +
-////				"            return \"!{}:{}:{}%\".format(msgType, counter, \"984000001112578\")\r\n");
+//	private void initializeButtonPressedFunction() throws IOException {
+//		spikeCommandExecutor.executeVoid("def buttonFunction(msgType, counter, fn):\r\n " +
+//				"exit = True\r\n " +
+//				"while exit:\r\n " +
+//				"result = eval(fn)\r\n " +
+//				"if result:\r\n " +
+//				"exit = False\r\n " +
+//				"return \"!{}:{}:{}%\".format(msgType, counter, \"984000001112578\")\r\n");
 //	}
 }
 

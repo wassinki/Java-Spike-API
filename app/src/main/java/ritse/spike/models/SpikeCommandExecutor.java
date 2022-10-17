@@ -28,6 +28,7 @@ public class SpikeCommandExecutor {
 			String message = new String(bytes);
 			String noExclaimationMark = message.substring(message.lastIndexOf("!") + 1);
 			String answer = noExclaimationMark.substring(0, noExclaimationMark.length() - 1);
+			System.out.println("we hebben wat binnen: "+ message);
 			final Matcher matcher = RESULT_PATTERN.matcher(answer);
 			if (matcher.matches()) {
 
@@ -59,9 +60,13 @@ public class SpikeCommandExecutor {
 			// put in map
 			handlerMap.put(messageCounter, exchanger);
 
+			//*/
+			serialPort.getOutputStream().get().write((String.format("buttonFunction(\"%s\", %d, \"" + command + "\")\r\n", "RC", messageCounter)).getBytes(StandardCharsets.UTF_8));
+			/*/
 			serialPort.getOutputStream().get().write((String.format("evaluator(\"%s\", %d, \"" + command + "\")\r\n", "RC", messageCounter)).getBytes(StandardCharsets.UTF_8));
+			//*/
 			try {
-				result = exchanger.exchange("", 15, TimeUnit.SECONDS);
+				result = exchanger.exchange("", 3, TimeUnit.SECONDS);
 			} catch (TimeoutException e) {
 				System.out.println(e.getCause() + " " + e.getMessage());
 			}
@@ -82,6 +87,36 @@ public class SpikeCommandExecutor {
 	public void executeVoid(String command) throws IOException {
 		serialPort.getOutputStream().get().write((command + "\r\n").getBytes(StandardCharsets.UTF_8));
 	}
+
+//	public String executeButtonCommand(String command) throws IOException, InterruptedException {
+//
+//		final int messageCounter = messageNumber++;
+//		try {
+//
+//			final Exchanger<String> exchanger = new Exchanger<>();
+//			// put in map
+//			handlerMap.put(messageCounter, exchanger);
+//
+//			serialPort.getOutputStream().get().write((String.format("buttonFunction(\"%s\", %d, \"" + command + "\")\r\n", "RC", messageCounter)).getBytes(StandardCharsets.UTF_8));
+//			try {
+//				result = exchanger.exchange("", 15, TimeUnit.SECONDS);
+//			} catch (TimeoutException e) {
+//				System.out.println(e.getCause() + " " + e.getMessage());
+//			}
+//
+//			if (result != null) {
+//				System.out.println("Result: " + result);
+//				final Matcher matcher = RESULT_PATTERN.matcher(result);
+//			} else {
+//				System.out.println("RESULT IS NULL");
+//			}
+//		} finally {
+//			handlerMap.remove(messageCounter);
+//		}
+//		return result;
+//
+//	}
+
 
 	public int getMessageNumber() {
 		return messageNumber;
