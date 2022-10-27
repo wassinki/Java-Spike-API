@@ -11,23 +11,22 @@ public class App {
 		hub.getButtonByEnum(ButtonEnum.LEFT).executeWhenPressed("980000053281");
 
 		/** To test distance sensor */
-//		hub.createDistanceSensor("C");
-//		hub.getDistanceSensor().lightUpAll();
-//		hub.getDistanceSensor().getDistanceCm();
+		hub.createDistanceSensor("E");
+		hub.getDistanceSensor().lightUpAll();
+		hub.getDistanceSensor().getDistanceCm();
 
 		/** To test motor */
 		hub.createMotor(MotorEnum.A);
 		hub.getMotorByMotorEnum(MotorEnum.A).getDefaultSpeed();
-
-//		hub.getMotorByMotorEnum(MotorEnum.A).getPosition();
-//		hub.getMotorByMotorEnum(MotorEnum.A).getSpeed();
+		hub.getMotorByMotorEnum(MotorEnum.A).getPosition();
+		hub.getMotorByMotorEnum(MotorEnum.A).getSpeed();
 
 
 		/** To test color sensor */
-//		hub.createColorSensor("C");
-//		hub.getColorSensor().getColor();
-//		hub.getColorSensor().getReflectedLight();
-//		hub.getColorSensor().getAmbientLight();
-//		System.out.println("done");
+		hub.createColorSensor("C");
+		hub.getColorSensor().getColor();
+		hub.getColorSensor().getReflectedLight();
+		hub.getColorSensor().getAmbientLight();
+		System.out.println("done");
 	}
 }

@@ -10,8 +10,4 @@ public enum ButtonEnum {
 	ButtonEnum(String value) {
 		this.asString = value;
 	}
-
-	public String getAsString() {
-		return asString;
-	}
 }

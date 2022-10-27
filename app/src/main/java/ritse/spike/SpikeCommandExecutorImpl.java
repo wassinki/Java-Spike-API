@@ -33,7 +33,7 @@ public class SpikeCommandExecutorImpl implements SpikeCommandExecutor {
 		String message = new String(bytes);
 		String noExclaimationMark = message.substring(message.lastIndexOf("!") + 1);
 		String answer = noExclaimationMark.substring(0, noExclaimationMark.length() - 1);
-		System.out.println("result from command: " +answer);
+		System.out.println("result from command: " + answer);
 		final Matcher matcher = RESULT_PATTERN.matcher(answer);
 		if (matcher.matches()) {
 

@@ -23,29 +23,22 @@ public class MindstormsHub {
 		buttonMap = new HashMap<>();
 	}
 
-	public void initialize() {
-		try {
-			System.out.println("initializing");
-			spikeCommandExecutor.executeVoid("\003");
-			spikeCommandExecutor.executeVoid("from spike import PrimeHub, LightMatrix, Button, StatusLight, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor");
-			spikeCommandExecutor.executeVoid("import hub");
-			spikeCommandExecutor.executeVoid("primeHub = PrimeHub()");
+	public void initialize() throws IOException {
+		System.out.println("initializing");
+		spikeCommandExecutor.executeVoid("\003");
+		spikeCommandExecutor.executeVoid("from spike import PrimeHub, LightMatrix, Button, StatusLight, MotionSensor, Speaker, ColorSensor, App, DistanceSensor, Motor");
+		spikeCommandExecutor.executeVoid("import hub");
+		spikeCommandExecutor.executeVoid("primeHub = PrimeHub()");
 
-			buttonMap.put(ButtonEnum.LEFT, new Button(ButtonEnum.LEFT, spikeCommandExecutor));
-			buttonMap.put(ButtonEnum.RIGHT, new Button(ButtonEnum.RIGHT, spikeCommandExecutor));
-			buttonMap.put(ButtonEnum.CENTER, new Button(ButtonEnum.CENTER, spikeCommandExecutor));
-			initializeEvalFunction();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		buttonMap.put(ButtonEnum.LEFT, new Button(ButtonEnum.LEFT, spikeCommandExecutor));
+		buttonMap.put(ButtonEnum.RIGHT, new Button(ButtonEnum.RIGHT, spikeCommandExecutor));
+		buttonMap.put(ButtonEnum.CENTER, new Button(ButtonEnum.CENTER, spikeCommandExecutor));
+		initializeEvalFunction();
+
 	}
 
-	public void displayText(String text) {
-		try {
-			spikeCommandExecutor.executeVoid(String.format("hub.display.show(\"%s\")", text));
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+	public void displayText(String text) throws IOException {
+		spikeCommandExecutor.executeVoid(String.format("hub.display.show(\"%s\")", text));
 	}
 
 	public void createMotor(MotorEnum motorEnum) throws IOException {

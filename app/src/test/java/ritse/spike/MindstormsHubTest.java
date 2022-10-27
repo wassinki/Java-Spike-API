@@ -1,15 +1,13 @@
 package ritse.spike;
 
-import static org.easymock.EasyMock.expect;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static ritse.spike.MotorEnum.A;
-import static ritse.spike.MotorEnum.C;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.easymock.EasyMock;
 import org.easymock.EasyMockExtension;
 import org.easymock.EasyMockSupport;
 import org.easymock.Mock;
@@ -41,6 +39,18 @@ public class MindstormsHubTest extends EasyMockSupport {
 		buttonMap = new HashMap<>();
 		verifyAll();
 		resetAll();
+	}
+
+	@Test
+	public void getColorSensorTest () throws IOException {
+		hub.createColorSensor(portChar);
+		assertNotNull(hub.getColorSensor());
+	}
+
+	@Test
+	public void getGetDistanceSensorTest () throws IOException {
+		hub.createDistanceSensor(portChar);
+		assertNotNull(hub.getDistanceSensor());
 	}
 
 	@Test

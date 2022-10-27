@@ -13,84 +13,42 @@ public class DistanceSensor {
 	/**
 	 * ACTIONS
 	 */
-	public void lightUpAll(int brightness) {
-		try {
-			spikeCommandExecutor.executeVoid(String.format("distance_sensor.light_up_all(%d)", brightness));
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+	public void lightUpAll(int brightness) throws IOException {
+		spikeCommandExecutor.executeVoid(String.format("distance_sensor.light_up_all(%d)", brightness));
 	}
 
-	public void lightUpAll() {
-		try {
-			spikeCommandExecutor.executeVoid(String.format("distance_sensor.light_up_all()"));
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+	public void lightUpAll() throws IOException {
+		spikeCommandExecutor.executeVoid(String.format("distance_sensor.light_up_all()"));
 	}
 
 
-	public void lightUp(int right_top, int right_bottom, int left_bottom, int left_top) {
-		try {
-			spikeCommandExecutor.executeVoid(String.format("distance_sensor.light_up(%d, %d, %d, %d)", right_top, right_bottom, left_bottom, left_top));
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+	public void lightUp(int right_top, int right_bottom, int left_bottom, int left_top) throws IOException {
+		spikeCommandExecutor.executeVoid(String.format("distance_sensor.light_up(%d, %d, %d, %d)", right_top, right_bottom, left_bottom, left_top));
 	}
 
 	/**
 	 * GETTERS
 	 */
-	public int getDistanceCm() {
-		try {
-			return Integer.parseInt(spikeCommandExecutor.execute(String.format("distance_sensor.get_distance_cm()")));
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		}
+	public int getDistanceCm() throws IOException, InterruptedException {
+		return Integer.parseInt(spikeCommandExecutor.execute(String.format("distance_sensor.get_distance_cm()")));
 	}
 
-	public int getDistanceInches() {
-		try {
-			return Integer.parseInt(spikeCommandExecutor.execute(String.format("distance_sensor.get_distance_inches()")));
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		}
+	public int getDistanceInches() throws IOException, InterruptedException {
+		return Integer.parseInt(spikeCommandExecutor.execute(String.format("distance_sensor.get_distance_inches()")));
 	}
 
-	public int getDistancePercentage() {
-		try {
-			return Integer.parseInt(spikeCommandExecutor.execute(String.format("distance_sensor.get_distance_percentage()")));
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		}
+	public int getDistancePercentage() throws InterruptedException, IOException {
+		return Integer.parseInt(spikeCommandExecutor.execute(String.format("distance_sensor.get_distance_percentage()")));
 	}
 
 	/**
 	 * EVENTS
 	 */
-	public void waitForDistanceFartherThan(float distance, String unit) {
-		try {
-			spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"distance_sensor.wait_for_distance_farther_than(%d, '%s')\")", "RC", spikeCommandExecutor.getMessageNumber(), distance, unit));
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		}
+	public void waitForDistanceFartherThan(float distance, String unit) throws IOException, InterruptedException {
+		spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"distance_sensor.wait_for_distance_farther_than(%d, '%s')\")", "RC", spikeCommandExecutor.getMessageNumber(), distance, unit));
 	}
 
-	public void waitForDistanceCloserThan(float distance, String unit) {
-		try {
-			spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"distance_sensor.wait_for_distance_closer_than(%d, '%s')\")", "RC", spikeCommandExecutor.getMessageNumber(), distance, unit));
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
-		}
+	public void waitForDistanceCloserThan(float distance, String unit) throws IOException, InterruptedException {
+		spikeCommandExecutor.execute(String.format("evaluator(\"%s\", %d, \"distance_sensor.wait_for_distance_closer_than(%d, '%s')\")", "RC", spikeCommandExecutor.getMessageNumber(), distance, unit));
 	}
 }
