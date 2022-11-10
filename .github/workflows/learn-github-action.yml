@@ -1,16 +1,16 @@
-name: mindstorms api ci/cd
-run-name: building and testing the mindstorms api
+name: Build and test mindstorms api
+
+run-name: Build and test mindstorms api
+
 on: [push]
+
 jobs:
   build-project:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
-      - run: dir
-      - run: cd C:\lmdev\Ritse Spike
-      - run: dir
-      - run: ./gradlew build
-  test-project:
-    runs-on: windows-latest
-    steps:
-      - run: cd app
-      - run: ./gradlew test
+      - name: Checkout project sources
+        uses: actions/checkout@v2
+      - name: Setup gradle
+        uses: gradle/gradle-build-action@v2
+      - name: Run build with Gradle Wrapper
+        run: ./gradlew build
