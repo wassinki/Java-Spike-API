@@ -16,12 +16,19 @@ jobs:
         run: chmod +x ./gradlew
       - name: Run build with Gradle Wrapper
         run: ./gradlew build
-#  test-project:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name:
-#        uses:
-#      - name:
-#        uses:
-#      - name:
-#        uses:
+  test-project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: Setup JDK 1.8
+        uses: actions/setup-java@v2
+        with:
+          java-version: '8'
+          distribution: 'adopt'
+
+      - name: Grant Permissions to gradlew
+        run: chmod +x gradlew
+      - name: Test
+        run: gradle test --tests "*"
