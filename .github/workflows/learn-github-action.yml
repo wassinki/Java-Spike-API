@@ -5,7 +5,7 @@ jobs:
   build-project:
     runs-on: windows-latest
     steps:
-      - run: cd app
+      - run: dir
       - run: ./gradlew build
   test-project:
     runs-on: windows-latest
