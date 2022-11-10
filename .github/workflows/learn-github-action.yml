@@ -6,6 +6,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - run: cd C:\lmdev\Ritse Spike
+      - run: dir
       - run: ./gradlew build
   test-project:
     runs-on: windows-latest
