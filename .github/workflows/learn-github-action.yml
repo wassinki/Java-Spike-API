@@ -5,8 +5,10 @@ jobs:
   build-project:
     runs-on: windows-latest
     steps:
+      - run: cd app
       - run: ./gradlew build
   test-project:
     runs-on: windows-latest
     steps:
+      - run: cd app
       - run: ./gradlew test
