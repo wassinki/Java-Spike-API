@@ -1,0 +1,10 @@
+name: learn-github-actions
+run-name: building and testing the mindstorms api
+on: [push]
+jobs:
+  build-project:
+    steps:
+      - run: ./gradle build
+    testproject:
+      steps:
+        - run: ./gralde test
