@@ -1,10 +1,12 @@
-name: learn-github-actions
+name: mindstorms api ci/cd
 run-name: building and testing the mindstorms api
 on: [push]
 jobs:
   build-project:
+    runs-on: windows-latest
     steps:
       - run: ./gradle build
   test-project:
+    runs-on: windows-latest
     steps:
       - run: ./gradle test
