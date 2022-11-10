@@ -5,6 +5,6 @@ jobs:
   build-project:
     steps:
       - run: ./gradle build
-    test-project:
-      steps:
-        - run: ./gradle test
+  test-project:
+    steps:
+      - run: ./gradle test
