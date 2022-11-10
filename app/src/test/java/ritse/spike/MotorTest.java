@@ -65,7 +65,7 @@ public class MotorTest extends EasyMockSupport {
 
 	@Test
 	public void testSetStopAction() throws IOException {
-		spikeCommandExecutor.executeVoid(String.format("motor%s.set_stop_action(" + stopAction + ")", MotorEnum.A.asString));
+		spikeCommandExecutor.executeVoid(String.format("maaotor%s.set_stop_action(" + stopAction + ")", MotorEnum.A.asString));
 		replayAll();
 
 		motor.setStopAction(stopAction);
