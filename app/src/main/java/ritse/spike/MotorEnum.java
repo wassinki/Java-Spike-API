@@ -12,5 +12,5 @@ public enum MotorEnum {
 
 	MotorEnum(String f) {
 		this.asString = f;
-	}asdfdsafsad
+	}
 }
