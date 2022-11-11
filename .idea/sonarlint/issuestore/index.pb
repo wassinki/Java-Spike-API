@@ -1,15 +1,21 @@
 
 b
 2app/src/test/java/ritse/spike/ColorSensorTest.java,e\e\ee148c207f4b1a6784b562f84d8e3015c5e1b518
-e
-5app/src/test/java/ritse/spike/DistanceSensorTest.java,5\f\5f89b53e418e0c6fb7a6a947cd57685978071037
 ]
 -app/src/main/java/ritse/spike/ButtonEnum.java,9\5\9599867c3df44decbf6cdea8015c8d90d47e4b8d
 ^
 .app/src/main/java/ritse/spike/ColorSensor.java,7\a\7a0f4006a70ac0dec0d69d6125c90b748bdf239e
 Y
 )app/src/main/java/ritse/spike/Button.java,2\7\27e4698de07202f07a88d46310b58d3f73036fcf
-V
-&app/src/main/java/ritse/spike/App.java,e\b\ebad3f02fde196ccc45c09cea91adf3c064c350a
 a
-1app/src/main/java/ritse/spike/DistanceSensor.java,2\d\2d36772f5b7cd2db21719f9a2ec0bdf2dd564313
+1app/src/main/java/ritse/spike/SerialPortImpl.java,a\5\a5d97642234f4f5db85f6a040dc699141c2ede62
+g
+7app/src/main/java/ritse/spike/SpikeCommandExecutor.java,b\7\b7465a7af15270954859d9f06405c53c685762f6
+a
+1app/src/main/java/ritse/spike/LegoSerialPort.java,7\4\7408e2a8c35d4bcf5fd58316e47e38269a5178c0
+]
+-app/src/test/java/ritse/spike/ButtonTest.java,d\c\dcbd382eae0026e60e2b0ddb897ac49576a4c7e6
+X
+(app/src/main/java/ritse/spike/Motor.java,2\a\2a37321075267a783c8832c231327c4919a7d518
+\
+,app/src/main/java/ritse/spike/MotorEnum.java,b\d\bde28e33eee8ddccbad3d78ec750f4ab4cb6efb1
