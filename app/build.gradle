@@ -9,6 +9,8 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'maven-publish'
+
 }
 
 repositories {
@@ -53,4 +55,24 @@ application {
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'ritseh'
+            artifactId = 'java-spike-api'
+            version = '0.1'
+            from components.java
+        }
+    }
+    maven {
+        name = "GitHubPackages"
+        url = "https://maven.pkg.github.com/ritseh/java-spike-api"
+        credentials {
+            username = System.getenv("GITHUB_ACTOR")
+            password = System.getenv("GITHUB_TOKEN")
+        }
+    }
+
 }
