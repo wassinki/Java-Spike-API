@@ -19,3 +19,7 @@ X
 (app/src/main/java/ritse/spike/Motor.java,2\a\2a37321075267a783c8832c231327c4919a7d518
 \
 ,app/src/main/java/ritse/spike/MotorEnum.java,b\d\bde28e33eee8ddccbad3d78ec750f4ab4cb6efb1
+`
+0app/src/main/java/ritse/spike/MindstormsHub.java,a\7\a7720803a49fcec7ccdcb5c0a4ce0c8eba8f0794
+k
+;app/src/main/java/ritse/spike/SpikeCommandExecutorImpl.java,c\9\c93d18b065f683edc486a2ea0d88b9b8227d1400

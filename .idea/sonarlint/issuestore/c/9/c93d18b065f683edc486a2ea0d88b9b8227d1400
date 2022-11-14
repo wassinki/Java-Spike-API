@@ -1,0 +1,17 @@
+
+`	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+`	java:S112/"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+m
+java:S3655U"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ÿ¤÷ä8Ûˆ“ÄÁ0
+m
+java:S3655?"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(”Â‘Â8Ûˆ“ÄÁ0
+N	java:S106$"9Replace this use of System.out or System.err by a logger.(Æÿ‰
+t
+java:S2142."^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€
+W
+java:S3457?"AFormat specifiers should be used instead of string concatenation.(”Â‘Â
+N	java:S106C"9Replace this use of System.out or System.err by a logger.(êÄÿğ
+S	java:S106G"9Replace this use of System.out or System.err by a logger.(òşÚúøÿÿÿÿ
+G
+java:S1481H",Remove this unused "matcher" local variable.(ôº±Æøÿÿÿÿ
+S	java:S106J"9Replace this use of System.out or System.err by a logger.(¿§Ñåÿÿÿÿÿ
