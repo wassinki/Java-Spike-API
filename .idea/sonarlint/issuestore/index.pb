@@ -5,8 +5,6 @@ b
 -app/src/main/java/ritse/spike/ButtonEnum.java,9\5\9599867c3df44decbf6cdea8015c8d90d47e4b8d
 ^
 .app/src/main/java/ritse/spike/ColorSensor.java,7\a\7a0f4006a70ac0dec0d69d6125c90b748bdf239e
-Y
-)app/src/main/java/ritse/spike/Button.java,2\7\27e4698de07202f07a88d46310b58d3f73036fcf
 a
 1app/src/main/java/ritse/spike/SerialPortImpl.java,a\5\a5d97642234f4f5db85f6a040dc699141c2ede62
 g
