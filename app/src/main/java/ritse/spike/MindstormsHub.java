@@ -33,6 +33,14 @@ public class MindstormsHub {
 		buttonMap.put(ButtonEnum.LEFT, new Button(ButtonEnum.LEFT, spikeCommandExecutor));
 		buttonMap.put(ButtonEnum.RIGHT, new Button(ButtonEnum.RIGHT, spikeCommandExecutor));
 		buttonMap.put(ButtonEnum.CENTER, new Button(ButtonEnum.CENTER, spikeCommandExecutor));
+
+		createMotor(MotorEnum.A);
+		createMotor(MotorEnum.B);
+		createMotor(MotorEnum.E);
+		createMotor(MotorEnum.F);
+
+		createColorSensor("C");
+		createDistanceSensor("D");
 		initializeEvalFunction();
 
 	}
