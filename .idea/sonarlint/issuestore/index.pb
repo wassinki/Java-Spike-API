@@ -13,7 +13,5 @@ a
 1app/src/main/java/ritse/spike/LegoSerialPort.java,7\4\7408e2a8c35d4bcf5fd58316e47e38269a5178c0
 ]
 -app/src/test/java/ritse/spike/ButtonTest.java,d\c\dcbd382eae0026e60e2b0ddb897ac49576a4c7e6
-X
-(app/src/main/java/ritse/spike/Motor.java,2\a\2a37321075267a783c8832c231327c4919a7d518
 \
 ,app/src/main/java/ritse/spike/MotorEnum.java,b\d\bde28e33eee8ddccbad3d78ec750f4ab4cb6efb1

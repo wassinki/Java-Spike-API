@@ -16,7 +16,7 @@ public class App {
 
 		/** To test motor */
 //		hub.createMotor(MotorEnum.A);
-		hub.getMotorByMotorEnum(MotorEnum.A).getDefaultSpeed();
+		hub.getMotorByMotorEnum(MotorEnum.A).getDegreesCounted();
 		hub.getMotorByMotorEnum(MotorEnum.A).getPosition();
 		hub.getMotorByMotorEnum(MotorEnum.A).getSpeed();
 
