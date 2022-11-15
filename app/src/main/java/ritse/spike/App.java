@@ -6,7 +6,6 @@ public class App {
 	public static void main(String[] args) throws IOException, InterruptedException {
 		System.out.println("Starting");
 		MindstormsHub hub = new MindstormsHub("COM5");
-		hub.initialize();
 
 //		hub.getButtonByEnum(ButtonEnum.LEFT).executeWhenPressed("980000053281");
 
@@ -16,7 +15,7 @@ public class App {
 //		hub.getDistanceSensor().getDistanceCm ();
 
 		/** To test motor */
-		hub.createMotor(MotorEnum.A);
+//		hub.createMotor(MotorEnum.A);
 		hub.getMotorByMotorEnum(MotorEnum.A).getDefaultSpeed();
 		hub.getMotorByMotorEnum(MotorEnum.A).getPosition();
 		hub.getMotorByMotorEnum(MotorEnum.A).getSpeed();

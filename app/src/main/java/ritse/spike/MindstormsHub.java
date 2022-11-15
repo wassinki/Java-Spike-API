@@ -21,6 +21,11 @@ public class MindstormsHub {
 		this.spikeCommandExecutor = executor;
 		motorMap = new HashMap<>();
 		buttonMap = new HashMap<>();
+		try {
+			initialize();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	public void initialize() throws IOException {
