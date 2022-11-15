@@ -20,6 +20,7 @@ public class App {
 		hub.getMotorByMotorEnum(MotorEnum.A).getPosition();
 		hub.getMotorByMotorEnum(MotorEnum.A).getSpeed();
 
+
 //		/** To test color sensor */
 //		hub.createColorSensor("C");
 //		hub.getColorSensor().getColor();
