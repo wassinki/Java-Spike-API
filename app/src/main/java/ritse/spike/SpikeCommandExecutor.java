@@ -1,6 +1,7 @@
 package ritse.spike;
 
 import java.io.IOException;
+import java.util.function.Consumer;
 
 public interface SpikeCommandExecutor {
 
@@ -12,5 +13,5 @@ public interface SpikeCommandExecutor {
 
 	public int getMessageNumber();
 
-
+	void addCallback(final String command, Consumer<String> callback) throws IOException, InterruptedException;
 }

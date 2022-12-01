@@ -1,6 +1,9 @@
 package ritse.spike;
 
+import static java.lang.Integer.parseInt;
+
 import java.io.IOException;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -17,6 +20,12 @@ public class Button {
 	public Button(ButtonEnum buttonEnum, SpikeCommandExecutor executor) {
 		this.buttonEnum = buttonEnum;
 		this.spikeCommandExecutor = executor;
+	}
+
+	public void callback(final Consumer<Integer> callback) throws IOException, InterruptedException {
+		spikeCommandExecutor.addCallback(String.format("hub.button.%s.callback", buttonEnum.asString), args -> {
+			callback.accept(parseInt(args));
+		});
 	}
 
 	public void executeWhenPressed(String desiredResult) throws IOException {
