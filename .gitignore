@@ -4,3 +4,5 @@
 build
 # Ignore hiden files
 .*
+# Ignore output files
+**/out/
